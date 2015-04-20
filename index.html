@@ -4,41 +4,56 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
   </head>
   <body>
+    <h1>Recent Chatter <img src="refresh.png" width="18px" id="refresh"></img></h1>
+    
     <div id='tweets'></div>
     <script>
 
       $(document).ready(function(){
-        // need to display tweets when created
-        var index = streams.home.length - 1;
+
         var postedTweets = [];
-        //ultimately need to append the message to the body
-        //the message is composed of line 1 and line 2 divs
-        //line 1 is composed of username and timestamp spans
-        //line 2 is composed of tweet span
-        
 
-        while (index >= 0) {
+        function displayNewTweets () {
+          for(var i = postedTweets.length; i < streams.home.length; i++) {
 
-          var $message = $('<div class=message></div>');
-          var $line1 = $('<div class=title></div>');
-          var $line2 = $('<div class=text></div>');
-          var $timestamp = $('<span class=timestamp></span>');
-          var $username = $('<span class=username></span>');
-          var $tweet = $('<span class=tweet></span>')
+            var $message = $('<div class=message></div>');
+            var $line1 = $('<div class=text></div>');
+            var $line2 = $('<div class=signature></div>');
+            var $timestamp = $('<span class=timestamp></span>');
+            var $username = $('<span></span>');
+            var $tweet = $('<span class=tweet></span>')
 
-          $tweet.text('"' + streams.home[index].message + '"');
-          $username.text('@' + streams.home[index].user);
-          $timestamp.text(' (' + streams.home[index].created_at.toLocaleTimeString() + ')');
-          $line1.append($username);
-          $line1.append($timestamp);
-          $line2.append($tweet);
-          $message.append($line1);
-          $message.append($line2);
-          $('#tweets').append($message);
-          index -=1;
+            $tweet.text('"' + streams.home[i].message + '"');
+            $username.text('@' + streams.home[i].user);
+            $username.attr('class', streams.home[i].user);
+            $timestamp.text(' (' + streams.home[i].created_at.toLocaleTimeString() + ')');
+            $line1.append($tweet);
+            $line2.append($username);
+            $line2.append($timestamp);
+            $message.append($line1);
+            $message.append($line2);
+            $('#tweets').prepend($message);
+
+            filterMessages(streams.home[i].user);
+            postedTweets.push(streams.home[i]);
+          } 
+        }            
+
+        function filterMessages (username) {
+          var classUserName = '.' + username;
+          $(classUserName).click(function(){
+            console.log(username, 'was clicked');
+            $('h1').text('@' + username + '\'s history');
+            $('.message').not($(classUserName).parent().parent()).remove();
+          })
         }
+
+        displayNewTweets();
+
+        $('#refresh').click(displayNewTweets);
 
 
       });
