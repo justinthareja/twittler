@@ -22,3 +22,15 @@ li {
 h1 {
   margin-left: 248px;
 }
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(253, 214, 142);
+}
+/*
+a:visited {
+  color: white;
+}*/
