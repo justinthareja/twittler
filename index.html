@@ -7,9 +7,10 @@
     <link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <img id="logo" src="logo.svg"></img>
+    <a href="index.html"><img id="logo" src="logo.svg"></img></a>
     <h1>Recent Chatter</h1>
     <ul id="tweetList"></ul>
+
 
     <script>
 
@@ -19,9 +20,12 @@
           while(streams.home.length){
             var tweet = streams.home.shift();
             var $tweet = $('<li></li>');
+            var link = '<a href="' + tweet.user + '.html">@' + tweet.user + ': </a>'; 
+            var message = link + tweet.message + ' (' + tweet.created_at.toLocaleTimeString() + ')';
+            var output = '<li>' + message + '</li>';
 
-            $tweet.text('@' + tweet.user + ': ' + tweet.message + ' (' + tweet.created_at.toLocaleTimeString() + (')'));
-            $('#tweetList').append($tweet);
+            $('#tweetList').append(output);
+
             while($('li').length > 10) {
               $('li')[0].remove();
             }
