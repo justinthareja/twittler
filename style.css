@@ -1,0 +1,14 @@
+body {
+    background-color: rgb(45, 140, 174);
+    color: white;
+}
+
+
+span.timestamp {
+    font-size: .75em;
+}
+
+.title {
+    margin-top: 1em;
+}
+

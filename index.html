@@ -3,22 +3,43 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <div id='tweets'></div>
     <script>
 
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
+        // need to display tweets when created
         var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        var postedTweets = [];
+        //ultimately need to append the message to the body
+        //the message is composed of line 1 and line 2 divs
+        //line 1 is composed of username and timestamp spans
+        //line 2 is composed of tweet span
+        
+
+        while (index >= 0) {
+
+          var $message = $('<div class=message></div>');
+          var $line1 = $('<div class=title></div>');
+          var $line2 = $('<div class=text></div>');
+          var $timestamp = $('<span class=timestamp></span>');
+          var $username = $('<span class=username></span>');
+          var $tweet = $('<span class=tweet></span>')
+
+          $tweet.text('"' + streams.home[index].message + '"');
+          $username.text('@' + streams.home[index].user);
+          $timestamp.text(' (' + streams.home[index].created_at.toLocaleTimeString() + ')');
+          $line1.append($username);
+          $line1.append($timestamp);
+          $line2.append($tweet);
+          $message.append($line1);
+          $message.append($line2);
+          $('#tweets').append($message);
+          index -=1;
         }
+
 
       });
 
