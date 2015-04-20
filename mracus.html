@@ -8,7 +8,7 @@
   </head>
   <body>
     <img id="logo" src="logo.svg"></img>
-    <h1>Recent Chatter</h1>
+    <h1>@mracus</h1>
     <ul id="tweetList"></ul>
 
     <script>
@@ -16,10 +16,9 @@
       $(document).ready(function(){
 
         function displayNewTweets () {
-          while(streams.home.length){
-            var tweet = streams.home.shift();
+          while(streams.users.mracus.length){
+            var tweet = streams.users.mracus.shift()
             var $tweet = $('<li></li>');
-
             $tweet.text('@' + tweet.user + ': ' + tweet.message + ' (' + tweet.created_at.toLocaleTimeString() + (')'));
             $('#tweetList').append($tweet);
             while($('li').length > 10) {
@@ -29,7 +28,7 @@
         }
 
         displayNewTweets();
-        setInterval(displayNewTweets, 3000);
+        setInterval(displayNewTweets, 1000);
 
       });
     </script>

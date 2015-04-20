@@ -1,0 +1,24 @@
+body {
+    background: rgb(47, 156, 203);
+    color: white;
+    font-family: 'Indie Flower', cursive;
+}
+
+ul#tweetList {
+    list-style-type: none;
+    margin-left: 49px;
+    font-size: larger;
+}
+
+li {
+    margin: 10px;
+}
+
+#logo {
+    width: 84px;
+    float: left;
+}
+
+h1 {
+  margin-left: 248px;
+}
