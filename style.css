@@ -1,36 +1,32 @@
 body {
-    background: rgb(47, 156, 203);
+    background-color: rgb(45, 140, 174);
     color: white;
     font-family: 'Indie Flower', cursive;
+    font-size: 1.2em;
 }
 
-ul#tweetList {
-    list-style-type: none;
-    margin-left: 49px;
-    font-size: larger;
+
+span.timestamp {
+    font-size: .7em;
 }
 
-li {
-    margin: 10px;
+.text {
+    margin-top: 1em;
 }
 
-#logo {
-    width: 84px;
-    float: left;
+.message {
+    margin-bottom: 3em;
 }
 
-h1 {
-  margin-left: 248px;
+div#tweets {
+    max-width: 400px;
 }
 
-a {
-  text-decoration: none;
+.signature {
+    float: right;
 }
 
-a:hover {
-  color: rgb(253, 214, 142);
+.signature:hover {
+  color: orange;
 }
-/*
-a:visited {
-  color: white;
-}*/
+
